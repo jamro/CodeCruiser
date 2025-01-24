@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~
+cd /home/pi/
 
 sudo apt-get update -y
 sudo apt-get install git -y
@@ -20,6 +20,40 @@ else
   cd "$REPO_DIR"
 fi
 
-
 cd app-runner/backend
-pip install -r requirements.txt --user --break-system-packages
+sudo -H pip install -r requirements.txt --break-system-packages
+
+
+
+
+# Add start.sh to autostart with root privileges
+SERVICE_NAME="app-runner.service"
+SERVICE_FILE="/etc/systemd/system/$SERVICE_NAME"
+
+if [ ! -f "$SERVICE_FILE" ]; then
+  echo "Creating systemd service for start.sh..."
+  sudo bash -c "cat > $SERVICE_FILE" <<EOL
+[Unit]
+Description=App Runner Service
+After=network.target
+
+[Service]
+ExecStart=/home/pi/CodeCruiser/app-runner/scripts/start.sh
+WorkingDirectory=/home/pi/CodeCruiser/app-runner/scripts
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+  sudo chmod 644 "$SERVICE_FILE"
+  sudo systemctl enable "$SERVICE_NAME"
+  echo "Service '$SERVICE_NAME' created and enabled."
+else
+  echo "Service '$SERVICE_NAME' already exists."
+fi
+
+echo "Installation complete. Reboot the system to apply changes."
