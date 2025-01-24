@@ -7,6 +7,18 @@ sudo apt-get install git -y
 sudo apt install python3 python3-pip
 pip install uvicorn --user --break-system-packages
 
+
+# Configure Watchdog
+sudo apt install watchdog -y
+if ! grep -q "dtparam=watchdog=on" /boot/config.txt; then
+  echo "Enabling watchdog in config.txt..."
+  echo "dtparam=watchdog=on" | sudo tee -a /boot/config.txt
+fi
+
+sudo systemctl enable watchdog
+sudo systemctl start watchdog
+
+# Clone or update the repository
 REPO_URL="https://github.com/jamro/CodeCruiser.git"
 REPO_DIR="CodeCruiser"
 
@@ -22,8 +34,6 @@ fi
 
 cd app-runner/backend
 sudo -H pip install -r requirements.txt --break-system-packages
-
-
 
 
 # Add start.sh to autostart with root privileges
