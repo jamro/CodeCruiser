@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navigation from "../components/Navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function Logs() {
   const { uid } = useParams();
@@ -52,9 +54,27 @@ export default function Logs() {
     }, 25)
   }, [logs, snapEnd]);
 
+
+  // regexp search for first occurance of http://0.0.0.0:[port] in logs.
+  
+  const match = logs.match(/http:\/\/0\.0\.0\.0:\d+/)
+  let liveUrl = null
+  if (match) {
+    const port = match[0].split(':')[2]
+    liveUrl = `http://${window.location.hostname}:${port}`
+  }
+  
+  if (liveUrl) {
+    var liveLink = <a href={liveUrl} target="_blank" rel="noreferrer" className="btn btn-primary ml-2">
+      <FontAwesomeIcon icon={faExternalLinkAlt} fixedWidth />
+    </a>
+  }
+
   return (
     <div className="container" style={{paddingTop: "2em"}}>
-      <Navigation locationName={process ? process.name : 'Process'} parentLocation={`/processes/`} />
+      <Navigation locationName={process ? process.name : 'Process'} parentLocation={`/processes/`} >
+        {liveLink}
+      </Navigation>
       <pre style={{fontSize: '0.6em', paddingBottom: '1em'}}>{logs}</pre>
     </div>
   );

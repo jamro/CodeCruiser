@@ -8,3 +8,6 @@ source venv/bin/activate
 
 # Install requirements
 pip3 install -r requirements.txt
+
+cd "$(dirname "$0")/../../cruiserlib"
+pip3 install -e .

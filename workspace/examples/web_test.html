@@ -1,0 +1,13 @@
+<h1>Hello World!</h1>
+<form>
+  <input type="text" name="name" value="Hello World!" />
+  <button type="submit">Reverse</button>
+</form>
+<script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    fetch('/api/reverse?text=' + encodeURIComponent(this.name.value))
+      .then(response => response.json())
+      .then(data => this.name.value = data.reversed);
+  });
+</script>

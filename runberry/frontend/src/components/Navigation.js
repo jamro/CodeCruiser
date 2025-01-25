@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faHome } from '@fortawesome/free-solid-svg-icons';
 
-export default function Navigation({locationName = "Home", parentLocation = null}) {
+export default function Navigation({locationName = "Home", parentLocation = null, children=null}) {
 
   if (parentLocation === null) {
     return <nav className="navbar fixed-top bg-body-tertiary p-2">
@@ -17,5 +17,6 @@ export default function Navigation({locationName = "Home", parentLocation = null
       <Link to={parentLocation}  style={{textDecoration: "none"}} className="text-dark">
         <FontAwesomeIcon icon={faChevronLeft} fixedWidth/>  {locationName}
       </Link>
+      {children}
     </nav>
 }

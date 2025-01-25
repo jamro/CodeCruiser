@@ -6,7 +6,6 @@ from pydantic import BaseModel
 from api import get_folder
 from api import get_file
 from process import ProcessManager
-from fastapi.responses import FileResponse
 
 process_manager = ProcessManager()
 app = FastAPI()
