@@ -88,10 +88,20 @@ class Process:
 
         try:
             subprocess.run(f"kill -9 $(pgrep -P {self.pid})", shell=True, check=True, executable="/bin/bash")
+
+            print(f"Process {self.pid} has been force-killed.")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to kill process {self.pid}.")
+            print(f"Error: {e}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+        try:
             subprocess.run(["kill", "-9", str(self.pid)], check=True)
 
             print(f"Process {self.pid} has been force-killed.")
-        except subprocess.CalledProcessError:
+        except subprocess.CalledProcessError as e:
             print(f"Failed to kill process {self.pid}.")
+            print(f"Error: {e}")
         except Exception as e:
             print(f"An error occurred: {e}")

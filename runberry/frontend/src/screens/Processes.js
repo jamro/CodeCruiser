@@ -21,7 +21,7 @@ export default function Processes() {
     }
     
     fetchProcesses();
-    const interval = setInterval(fetchProcesses, 2000);
+    const interval = setInterval(fetchProcesses, 200);
     return () => clearInterval(interval);
   }, []);
 
