@@ -66,6 +66,15 @@ export default function FileRow({ file, onExecute = () => {} }) {
       </li>
     );
   }
+  if (file.is_viewable) {
+    return (
+      <li className="list-group-item">
+        <a href={"/api/raw_files/" + file.path} style={{ textDecoration: "none" }} target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faFile} /> {file.name}
+        </a>
+      </li>
+    );
+  }
   return (
     <li className="list-group-item">
       <FontAwesomeIcon icon={faFile} /> {file.name}

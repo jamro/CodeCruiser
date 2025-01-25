@@ -4,7 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 from pydantic import BaseModel
 from api import get_folder
+from api import get_file
 from process import ProcessManager
+from fastapi.responses import FileResponse
 
 process_manager = ProcessManager()
 app = FastAPI()
@@ -42,6 +44,11 @@ class ExecuteRequest(BaseModel):
 @app.get("/api/status")
 def get_status():
     return {"status": "Running"}
+
+@app.get("/api/raw_files/{path:path}")
+def get_workspace(path: str):
+    return get_file(path)
+
 
 @app.get("/api/files/{path:path}")
 def get_workspace(path: str):
