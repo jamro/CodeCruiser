@@ -7,7 +7,7 @@ export default function Processes() {
   const [processes, setProcesses] = useState([])
 
 
-  useEffect(() => {
+  const fetchProcesses = () => {
     axios.get("/api/processes")
         .then(res => setProcesses(res.data))
         .catch(err => {
@@ -17,6 +17,12 @@ export default function Processes() {
             console.error(err);
           }
         });
+  }
+
+  useEffect(() => {
+    fetchProcesses();
+    const interval = setInterval(fetchProcesses, 200);
+    return () => clearInterval(interval);
   }, []);
 
 

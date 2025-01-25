@@ -1,4 +1,4 @@
-import { faCog, faFile, faFolderClosed } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faEye, faFile, faFolderClosed, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -70,7 +70,7 @@ export default function FileRow({ file, onExecute = () => {} }) {
     return (
       <li className="list-group-item">
         <a href={"/api/raw_files/" + file.path} style={{ textDecoration: "none" }} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faFile} /> {file.name}
+          <FontAwesomeIcon icon={faEye} /> {file.name}
         </a>
       </li>
     );

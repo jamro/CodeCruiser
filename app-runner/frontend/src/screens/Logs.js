@@ -7,7 +7,7 @@ export default function Logs() {
 
   const [logs, setLogs] = useState('')
 
-  useEffect(() => {
+  const refreshLogs = () => {
     axios.get(`/api/processes/${uid}/logs`)
         .then(res => setLogs(res.data))
         .catch(err => {
@@ -17,10 +17,19 @@ export default function Logs() {
             console.error(err);
           }
         });
-  }, []);
+  }
 
-    return (
-        <pre style={{fontSize: '0.6em'}}>{logs}</pre>
-    );
+  // refresh logs every 200ms
+  useEffect(() => {
+    refreshLogs();
+    const interval = setInterval(refreshLogs, 200);
+    return () => clearInterval(interval);
+  }, [uid]);
+
+  
+
+  return (
+      <pre style={{fontSize: '0.6em'}}>{logs}</pre>
+  );
 
 }

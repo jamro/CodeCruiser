@@ -18,7 +18,7 @@ export default function Files() {
     filesPath = filesPath.slice(6);
   }
 
-  useEffect(() => {
+  const refreshFiles = () => {
     axios.get("/api/files" + filesPath)
         .then(res => setFiles(res.data))
         .catch(err => {
@@ -28,7 +28,15 @@ export default function Files() {
             console.error(err);
           }
         });
+  }
+
+  // refresh files every 200ms
+  useEffect(() => {
+    refreshFiles();
+    const interval = setInterval(refreshFiles, 200);
+    return () => clearInterval(interval);
   }, [location.pathname]);
+
 
   const pathSegments = filesPath.split("/");
   const currentFolderName = pathSegments[pathSegments.length - 1];
