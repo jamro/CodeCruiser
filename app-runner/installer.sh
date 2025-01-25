@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Ensure the script runs only on a Raspberry Pi
+if ! grep -q "Raspberry Pi" /proc/device-tree/model; then
+  echo "This script must be run on a Raspberry Pi. Exiting..."
+  exit 1
+fi
+
 cd /home/pi/
 
 sudo apt-get update -y
