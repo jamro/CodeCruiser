@@ -6,8 +6,6 @@ if ! grep -q "Raspberry Pi" /proc/device-tree/model; then
   exit 1
 fi
 
-cd /home/pi/
-
 sudo apt-get update -y
 sudo apt-get install git -y
 sudo apt install python3 python3-pip
@@ -21,6 +19,12 @@ fi
 
 sudo systemctl enable watchdog
 sudo systemctl start watchdog
+
+# install codecruiser library
+cd /home/pi/CodeCruiser/cruiserlib
+sudo -H pip install -e . --break-system-packages
+
+cd /home/pi/
 
 # Clone or update the repository
 REPO_URL="https://github.com/jamro/CodeCruiser.git"
@@ -76,6 +80,3 @@ fi
 
 echo "Installation complete. Reboot the system to apply changes."
 
-# install codecruiser library
-cd /home/pi/CodeCruiser/cruiserlib
-sudo -H pip install -e . --break-system-packages

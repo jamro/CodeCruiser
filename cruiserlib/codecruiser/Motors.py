@@ -3,7 +3,7 @@ from time import sleep
 
 class Motors:
   def __init__(self):
-    self.motors = [
+    self._motors = [
       {
         "enable": PWMOutputDevice(17),
         "forward": PWMOutputDevice(22),
@@ -29,9 +29,35 @@ class Motors:
         "reverse": True
       },
     ]
+    self._sides = {
+      "left": [0, 1],
+      "right": [2, 3]
+    }
+    self._left_speed = 0
+    self._right_speed = 0
+
+  @property
+  def left_speed(self):
+    return self._left_speed
+  
+  @left_speed.setter
+  def left_speed(self, speed):
+    self._left_speed = speed
+    for motor_index in self._sides["left"]:
+      self.control_motor(motor_index, speed)
+
+  @property
+  def right_speed(self):
+    return self._right_speed
+  
+  @right_speed.setter
+  def right_speed(self, speed):
+    self._right_speed = speed
+    for motor_index in self._sides["right"]:
+      self.control_motor(motor_index, speed)
 
   def control_motor(self, motor_index, speed):
-    motor = self.motors[motor_index]
+    motor = self._motors[motor_index]
     if motor["reverse"]:
       speed = -speed
 
@@ -45,19 +71,3 @@ class Motors:
       motor["forward"].value = 0
       motor["backward"].value = 0
     motor["enable"].value = abs(speed)
-
-    
-
-
-motors = Motors()
-motors.control_motor(0, 1)
-motors.control_motor(1, 1)
-motors.control_motor(2, 1)
-motors.control_motor(3, 1)
-
-sleep(1)
-
-motors.control_motor(0, 0)
-motors.control_motor(1, 0)
-motors.control_motor(2, 0)
-motors.control_motor(3, 0)
