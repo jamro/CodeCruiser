@@ -43,12 +43,12 @@ else
   cd "$REPO_DIR"
 fi
 
-cd app-runner/backend
+cd runberry/backend
 sudo -H pip install -r requirements.txt --break-system-packages
 
 
 # Add start.sh to autostart with root privileges
-SERVICE_NAME="app-runner.service"
+SERVICE_NAME="runberry.service"
 SERVICE_FILE="/etc/systemd/system/$SERVICE_NAME"
 
 if [ ! -f "$SERVICE_FILE" ]; then
@@ -59,8 +59,8 @@ Description=App Runner Service
 After=network.target
 
 [Service]
-ExecStart=/home/pi/CodeCruiser/app-runner/scripts/start.sh
-WorkingDirectory=/home/pi/CodeCruiser/app-runner/scripts
+ExecStart=/home/pi/CodeCruiser/runberry/scripts/start.sh
+WorkingDirectory=/home/pi/CodeCruiser/runberry/scripts
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
