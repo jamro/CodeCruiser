@@ -29,7 +29,7 @@ class Process:
             if not line:
                 break
             with self._lock:
-                self.logs += f"[{log_type}] {line}"
+                self.logs += line
 
     def _monitor_process(self):
         """Monitors the process and updates properties."""

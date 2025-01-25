@@ -9,7 +9,7 @@ function App() {
   
     // use bootstrap for styling
     return (
-        <div style={{ marginTop: "20px" }}> 
+        <div style={{ marginTop: "20px", paddingBottom: "3em" }}> 
           <Routes>
             <Route path="/" element={<Navigate to="/files" replace />} />
             <Route path="/files/*" element={<Files />} />

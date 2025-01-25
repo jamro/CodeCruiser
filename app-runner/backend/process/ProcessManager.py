@@ -30,6 +30,8 @@ class ProcessManager:
         self.processes.insert(0, p)
         p.start()
 
+        return p.uid
+
     def get_processes(self):
         return self.processes
       

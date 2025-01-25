@@ -77,11 +77,29 @@ def get_process():
 
 @app.post("/api/processes")
 def create_process(request: ExecuteRequest):
-    process_id = process_manager.execute(request.path, request.args)
+    process_uid = process_manager.execute(request.path, request.args)
     return {
         "path": request.path,
-        "args": request.args
+        "args": request.args,
+        "uid": process_uid
     }
+
+@app.get("/api/processes/{uid}")
+def get_process_logs(uid: str):
+    p = process_manager.get_process_by_uid(uid)
+    if p is None:
+        raise HTTPException(status_code=404, detail="Process not found")
+    
+    return {
+            "pid": p.pid,
+            "uid": p.uid,
+            "name": p.name,
+            "command": p.command,
+            "working_directory": p.working_directory,
+            "is_running": p.is_running,
+            "start_timestamp": p.start_timestamp,
+            "stop_timestamp": p.stop_timestamp,
+        }
 
 @app.get("/api/processes/{uid}/logs")
 def get_process_logs(uid: str):
