@@ -84,6 +84,13 @@ def create_process(request: ExecuteRequest):
         "uid": process_uid
     }
 
+@app.delete("/api/processes/{uid}")
+def kill_process(uid: str):
+    p = process_manager.get_process_by_uid(uid)
+    if p is None:
+        raise HTTPException(status_code=404, detail="Process not found")
+    p.kill()
+
 @app.get("/api/processes/{uid}")
 def get_process_logs(uid: str):
     p = process_manager.get_process_by_uid(uid)

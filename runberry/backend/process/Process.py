@@ -3,6 +3,9 @@ import threading
 import datetime
 import shlex
 import uuid
+import os
+import signal
+import subprocess
 
 class Process:
     def __init__(self, command, working_directory=None, name="Process"):
@@ -84,18 +87,11 @@ class Process:
             raise RuntimeError("Process is not running.")
 
         try:
-            self._process.terminate()
-            self._process.wait(timeout=5)  # Give it time to terminate gracefully
-            with self._lock:
-                self.is_running = False
-                self.stop_timestamp = datetime.datetime.now()
-                self.exit_code = self._process.returncode
-        except subprocess.TimeoutExpired:
-            self._process.kill()
-            with self._lock:
-                self.is_running = False
-                self.stop_timestamp = datetime.datetime.now()
-                self.exit_code = self._process.returncode
+            subprocess.run(f"kill -9 $(pgrep -P {self.pid})", shell=True, check=True, executable="/bin/bash")
+            subprocess.run(["kill", "-9", str(self.pid)], check=True)
+
+            print(f"Process {self.pid} has been force-killed.")
+        except subprocess.CalledProcessError:
+            print(f"Failed to kill process {self.pid}.")
         except Exception as e:
-            with self._lock:
-                self.logs += f"\nFailed to kill process: {str(e)}"
+            print(f"An error occurred: {e}")
