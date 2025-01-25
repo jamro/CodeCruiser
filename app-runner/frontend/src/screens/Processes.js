@@ -6,20 +6,20 @@ export default function Processes() {
 
   const [processes, setProcesses] = useState([])
 
-
-  const fetchProcesses = () => {
-    axios.get("/api/processes")
-        .then(res => setProcesses(res.data))
-        .catch(err => {
-          if (err.response && err.response.status === 404) {
-            setProcesses([]);
-          } else {
-            console.error(err);
-          }
-        });
-  }
-
   useEffect(() => {
+
+    const fetchProcesses = () => {
+      axios.get("/api/processes")
+          .then(res => setProcesses(res.data))
+          .catch(err => {
+            if (err.response && err.response.status === 404) {
+              setProcesses([]);
+            } else {
+              console.error(err);
+            }
+          });
+    }
+    
     fetchProcesses();
     const interval = setInterval(fetchProcesses, 200);
     return () => clearInterval(interval);

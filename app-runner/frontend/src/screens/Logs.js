@@ -10,20 +10,21 @@ export default function Logs() {
   const [process, setProcess] = useState(null)
   const [snapEnd, setSnapEnd] = useState(true)
 
-  const refreshLogs = () => {
-    axios.get(`/api/processes/${uid}/logs`)
-        .then(res => setLogs(res.data))
-        .catch(err => {
-          console.error(err);
-        });
-  }
-
   // refresh logs every 200ms
   useEffect(() => {
+
+    const refreshLogs = () => {
+      axios.get(`/api/processes/${uid}/logs`)
+          .then(res => setLogs(res.data))
+          .catch(err => {
+            console.error(err);
+          });
+    }
+
     refreshLogs();
     const interval = setInterval(refreshLogs, 200);
     return () => clearInterval(interval);
-  }, [uid, refreshLogs]);
+  }, [uid]);
 
   useEffect(() => {
     axios.get(`/api/processes/${uid}`)
@@ -49,7 +50,7 @@ export default function Logs() {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight
       window.scrollTo(0, maxScroll)
     }, 25)
-  }, [logs]);
+  }, [logs, snapEnd]);
 
   return (
     <div className="container" style={{paddingTop: "2em"}}>

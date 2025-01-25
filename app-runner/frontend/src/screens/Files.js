@@ -18,24 +18,24 @@ export default function Files() {
     filesPath = filesPath.slice(6);
   }
 
-  const refreshFiles = () => {
-    axios.get("/api/files" + filesPath)
-        .then(res => setFiles(res.data))
-        .catch(err => {
-          if (err.response && err.response.status === 404) {
-            setFiles({ path: filesPath, files: [] });
-          } else {
-            console.error(err);
-          }
-        });
-  }
-
   // refresh files every 200ms
   useEffect(() => {
+    const refreshFiles = () => {
+      axios.get("/api/files" + filesPath)
+          .then(res => setFiles(res.data))
+          .catch(err => {
+            if (err.response && err.response.status === 404) {
+              setFiles({ path: filesPath, files: [] });
+            } else {
+              console.error(err);
+            }
+          });
+    }
+
     refreshFiles();
     const interval = setInterval(refreshFiles, 200);
     return () => clearInterval(interval);
-  }, [location.pathname, refreshFiles]);
+  }, [filesPath]);
 
   const pathSegments = filesPath.split("/");
   const currentFolderName = pathSegments[pathSegments.length - 1];
