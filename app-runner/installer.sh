@@ -34,7 +34,7 @@ if [ -d "$REPO_DIR" ]; then
   cd "$REPO_DIR"
   sudo git stash --include-untracked
   sudo git pull
-  git stash pop
+  sudo git stash pop
 else
   echo "Cloning repository..."
   git clone "$REPO_URL" "$REPO_DIR"
