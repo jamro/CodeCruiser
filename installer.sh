@@ -77,3 +77,7 @@ else
 fi
 
 echo "Installation complete. Reboot the system to apply changes."
+
+# install codecruiser library
+cd /home/pi/CodeCruiser/cruiserlib
+pip install -e .
