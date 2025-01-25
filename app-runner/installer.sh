@@ -63,7 +63,8 @@ EOL
   sudo systemctl enable "$SERVICE_NAME"
   echo "Service '$SERVICE_NAME' created and enabled."
 else
-  echo "Service '$SERVICE_NAME' already exists."
+  echo "Service '$SERVICE_NAME' already exists. Restarting it..."
+  sudo systemctl restart "$SERVICE_NAME"
 fi
 
 echo "Installation complete. Reboot the system to apply changes."
