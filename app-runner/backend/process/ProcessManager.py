@@ -27,7 +27,7 @@ class ProcessManager:
           os.chmod(full_path, os.stat(full_path).st_mode | 0o111)
 
         p = Process(workspace_path + "/" + path + " " + args, cwd, name=path.split("/")[-1])
-        self.processes.append(p)
+        self.processes.insert(0, p)
         p.start()
 
     def get_processes(self):
