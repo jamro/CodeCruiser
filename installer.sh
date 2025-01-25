@@ -11,8 +11,6 @@ cd /home/pi/
 sudo apt-get update -y
 sudo apt-get install git -y
 sudo apt install python3 python3-pip
-pip install uvicorn --user --break-system-packages
-
 
 # Configure Watchdog
 sudo apt install watchdog -y
@@ -80,4 +78,4 @@ echo "Installation complete. Reboot the system to apply changes."
 
 # install codecruiser library
 cd /home/pi/CodeCruiser/cruiserlib
-pip install -e .
+sudo -H pip install -e --break-system-packages .

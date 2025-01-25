@@ -10,6 +10,6 @@ setup(
   include_package_data=True,
   description='CodeCruiser library',
   author='Krzysztof Jamroz',
-  author_email='kjamroz83@gmail.com",
+  author_email='kjamroz83@gmail.com',
   python_requires='>=3.6',
 )
