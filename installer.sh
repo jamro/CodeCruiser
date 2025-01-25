@@ -20,10 +20,6 @@ fi
 sudo systemctl enable watchdog
 sudo systemctl start watchdog
 
-# install codecruiser library
-cd /home/pi/CodeCruiser/cruiserlib
-sudo -H pip install -e . --break-system-packages
-
 cd /home/pi/
 
 # Clone or update the repository
@@ -45,6 +41,10 @@ fi
 
 cd runberry/backend
 sudo -H pip install -r requirements.txt --break-system-packages
+
+# install codecruiser library
+cd /home/pi/CodeCruiser/cruiserlib
+sudo -H pip install -e . --break-system-packages
 
 
 # Add start.sh to autostart with root privileges
