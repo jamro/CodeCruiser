@@ -78,4 +78,4 @@ echo "Installation complete. Reboot the system to apply changes."
 
 # install codecruiser library
 cd /home/pi/CodeCruiser/cruiserlib
-sudo -H pip install -e --break-system-packages .
+sudo -H pip install -e . --break-system-packages
