@@ -30,8 +30,8 @@ class Motors:
       },
     ]
     self._sides = {
-      "left": [0, 1],
-      "right": [2, 3]
+      "left": [0, 3],
+      "right": [1, 2]
     }
     self._left_speed = 0
     self._right_speed = 0
