@@ -14,11 +14,7 @@ export default function Logs() {
     axios.get(`/api/processes/${uid}/logs`)
         .then(res => setLogs(res.data))
         .catch(err => {
-          if (err.response && err.response.status === 404) {
-            setLogs('');
-          } else {
-            console.error(err);
-          }
+          console.error(err);
         });
   }
 
