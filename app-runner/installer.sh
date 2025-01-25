@@ -32,7 +32,9 @@ git config --global --add safe.directory /home/pi/CodeCruiser
 if [ -d "$REPO_DIR" ]; then
   echo "Directory '$REPO_DIR' exists. Pulling latest changes..."
   cd "$REPO_DIR"
-  git pull
+  sudo git stash --include-untracked
+  sudo git pull
+  git stash pop
 else
   echo "Cloning repository..."
   git clone "$REPO_URL" "$REPO_DIR"

@@ -8,13 +8,13 @@ class Motors:
         "enable": PWMOutputDevice(17),
         "forward": PWMOutputDevice(22),
         "backward": PWMOutputDevice(27),
-        "reverse": False
+        "reverse": True
       },
       {
         "enable": PWMOutputDevice(25),
         "forward": PWMOutputDevice(23),
         "backward": PWMOutputDevice(24),
-        "reverse": False
+        "reverse": True
       },
       {
         "enable": PWMOutputDevice(10),
@@ -26,7 +26,7 @@ class Motors:
         "enable": PWMOutputDevice(12),
         "forward": PWMOutputDevice(8),
         "backward": PWMOutputDevice(7),
-        "reverse": False
+        "reverse": True
       },
     ]
 
