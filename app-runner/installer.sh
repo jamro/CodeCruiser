@@ -21,6 +21,7 @@ sudo systemctl start watchdog
 # Clone or update the repository
 REPO_URL="https://github.com/jamro/CodeCruiser.git"
 REPO_DIR="CodeCruiser"
+git config --global --add safe.directory /home/pi/CodeCruiser
 
 if [ -d "$REPO_DIR" ]; then
   echo "Directory '$REPO_DIR' exists. Pulling latest changes..."
