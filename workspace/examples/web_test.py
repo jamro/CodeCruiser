@@ -12,7 +12,7 @@ def read_root():
     return FileResponse("web_test.html")
 
 @app.get("/api/forward")
-def reverse_string():
+def go_forward():
     motors.left_speed = 1
     motors.right_speed = 1
     sleep(0.5)
@@ -21,7 +21,7 @@ def reverse_string():
     return {"status": "ok"}
 
 @app.get("/api/backward")
-def reverse_string():
+def go_backward():
     motors.left_speed = -1
     motors.right_speed = -1
     sleep(0.5)
@@ -30,7 +30,7 @@ def reverse_string():
     return {"status": "ok"}
 
 @app.get("/api/left")
-def reverse_string():
+def go_left():
     motors.left_speed = -1
     motors.right_speed = 1
     sleep(0.5)
@@ -39,7 +39,7 @@ def reverse_string():
     return {"status": "ok"}
 
 @app.get("/api/right")
-def reverse_string():
+def go_right():
     motors.left_speed = 1
     motors.right_speed = -1
     sleep(0.5)
