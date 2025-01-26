@@ -9,7 +9,7 @@ motors = Motors()
 
 @app.get("/")
 def read_root():
-    return FileResponse("web_test.html")
+    return FileResponse("remote_control.html")
 
 @app.get("/api/forward")
 def go_forward():
