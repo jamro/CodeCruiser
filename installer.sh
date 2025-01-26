@@ -10,6 +10,7 @@ sudo apt-get update -y
 sudo apt upgrade -y
 sudo apt-get install git -y
 sudo apt install python3 python3-pip
+sudo apt install -y python3-picamera2 python3-pyqt5 python3-opengl python3-opencv ffmpeg python3-flask
 
 # Configure Watchdog
 sudo apt install watchdog -y
