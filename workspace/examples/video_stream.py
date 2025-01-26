@@ -33,6 +33,7 @@ def initialize_camera():
 
 
 async def lifespan(app: FastAPI):
+    """Lifespan context manager for FastAPI."""
     try:
         initialize_camera()
         yield
@@ -45,7 +46,7 @@ app = FastAPI(lifespan=lifespan)
 
 
 async def video_stream_generator():
-    fps = 30
+    """Asynchronous generator to stream video frames."""
     while True:
         stream = io.BytesIO()
         try:
@@ -54,7 +55,7 @@ async def video_stream_generator():
             frame = stream.read()
             yield (b"--frame\r\n"
                    b"Content-Type: image/jpeg\r\n\r\n" + frame + b"\r\n")
-            await asyncio.sleep(1000/fps)
+            await asyncio.sleep(0.1)  # Limit to ~10 FPS
         except Exception as e:
             print(f"Error capturing frame: {e}")
             break
