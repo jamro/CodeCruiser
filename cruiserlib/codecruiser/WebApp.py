@@ -57,11 +57,14 @@ class WebApp(FastAPI):
   
   def stream_video(self):
     if self.picam2 and not self.picam2_ready:
+      print("Camera is not ready")
       return Response(content="Camera is not ready", status_code=503)
 
     if not self.picam2 and not self.picam2_ready:
+      print("Initializing camera")
       self.initialize_camera()
       self.picam2_ready = True
+      print("Camera initialized")
 
     async def video_stream_generator():
       while True:
