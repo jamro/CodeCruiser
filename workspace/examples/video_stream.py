@@ -57,8 +57,8 @@ if __name__ == '__main__':
   try:
     initialize_camera()  # Ensure the camera is ready before starting the server
     port = 5000
-    app.run(host='0.0.0.0', port=port, debug=False)
     print(f"Starting server on http://0.0.0.0:{port}")
+    app.run(host='0.0.0.0', port=port, debug=False)
   finally:
     if picam2:
       picam2.stop()
