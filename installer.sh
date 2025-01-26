@@ -7,6 +7,7 @@ if ! grep -q "Raspberry Pi" /proc/device-tree/model; then
 fi
 
 sudo apt-get update -y
+sudo apt upgrade -y
 sudo apt-get install git -y
 sudo apt install python3 python3-pip
 
