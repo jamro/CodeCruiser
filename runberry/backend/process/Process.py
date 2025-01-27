@@ -43,16 +43,19 @@ class Process:
             stdout_thread.start()
             stderr_thread.start()
 
-            stdout_thread.join()
-            stderr_thread.join()
+            self._process.wait()
 
             with self._lock:
                 self.exit_code = self._process.returncode
                 self.stop_timestamp = datetime.datetime.now()
                 self.is_running = False
+
+            stdout_thread.join()
+            stderr_thread.join()
         except Exception as e:
             with self._lock:
                 self.logs += f"\nError while monitoring process: {str(e)}"
+                self.exit_code = self._process.returncode
                 self.is_running = False
 
     def start(self):

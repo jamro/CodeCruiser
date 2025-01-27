@@ -55,6 +55,7 @@ export default function Processes() {
             name={p.name} 
             start_timestamp={p.start_timestamp}
             stop_timestamp={p.stop_timestamp}
+            exit_code={p.exit_code}
             onKill={() => kill(p.uid)}
           />
         ))}

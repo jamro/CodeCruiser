@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from api import get_folder
 from api import get_file
 from process import ProcessManager
+from time import time
 
 process_manager = ProcessManager()
 app = FastAPI()
@@ -62,6 +63,10 @@ def get_workspace_root():
 def get_process():
     result = []
     for p in process_manager.get_processes():
+        # skip processes stopped more then 15min ago
+        if p.stop_timestamp is not None and (time() - p.stop_timestamp.timestamp()) > 15*60:
+            continue
+        
         result.append({
             "pid": p.pid,
             "uid": p.uid,
@@ -71,6 +76,7 @@ def get_process():
             "is_running": p.is_running,
             "start_timestamp": p.start_timestamp,
             "stop_timestamp": p.stop_timestamp,
+            "exit_code": p.exit_code
         })
     return result
 
