@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faCogs, faFolderClosed, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faFolderClosed, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 
-export default function Menu() {
+export default function Menu({
+  filesPath = "/files",
+}) {
 
   const location = useLocation();
   const firstChunk = location.pathname.split('/')[1];
@@ -10,7 +12,7 @@ export default function Menu() {
   const buttons = [];
   if (firstChunk !== "files" && firstChunk !== "") {
     buttons.push(
-      <Link to="/files" className="btn btn-dark col-6" key="files">
+      <Link to={filesPath} className="btn btn-dark col-6" key="files">
         <FontAwesomeIcon icon={faFolderClosed} size="2x" />
       </Link>
     );

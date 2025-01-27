@@ -37,6 +37,10 @@ export default function Files() {
     return () => clearInterval(interval);
   }, [filesPath]);
 
+  useEffect(() => {
+    localStorage.setItem("lastFilesPath", location.pathname.replace(/^\/files\/?/, "/"));
+  }, [filesPath]);
+
   const pathSegments = filesPath.split("/");
   const currentFolderName = pathSegments[pathSegments.length - 1];
   const parentFolder = pathSegments.slice(0, pathSegments.length - 1).join("/");
