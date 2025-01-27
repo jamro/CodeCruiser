@@ -33,7 +33,7 @@ def get_folder(path):
       "is_directory": is_directory,
       "is_executable": not is_directory and os.access(file_path, os.X_OK),
       "looks_executable": not is_directory and looks_executable(file_path),
-      "is_viewable": not is_directory and get_mime_type(file_path) is not None,
+      "is_downloadable": not is_directory and get_mime_type(file_path) is not None,
       "path": path + "/" + file if path else file
     })
 

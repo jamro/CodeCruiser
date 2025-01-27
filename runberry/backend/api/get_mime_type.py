@@ -11,4 +11,4 @@ def get_mime_type(path):
         if path.endswith(ext):
             return mime_type
       
-    return None
+    return 'application/octet-stream'
