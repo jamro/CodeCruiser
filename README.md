@@ -5,6 +5,17 @@
 
 ![CodeCruiser Screenshot](docs/render.png)
 
+## Key Features
+
+- **Based on Raspberry Pi** - a powerful and versatile platform giving you a lot of possibilities for software development
+- **Wi-Fi connectivity** - control the robot wirelessly
+- **Four-wheel drive** - for better traction and stability. The robot can move in any direction and rotate in place. Steering is done by changing the speed of the wheels on each side.
+- **Front camera** - capable of 4608x2592 pixel images and 4608x2592@14FPS / 2304x1296@56FPS / 1536x864@120FPS video.
+- **Powered by 2x 18650 batteries** - easy to replace and recharge. Built-in voltage meter for monitoring the battery level.
+- **RunBerry web interface** - control the robot from your phone or tablet using a web browser
+- **CodeCruise Library** - a set of Python modules to streamline the development of robot applications
+- **Example applications** - included to get you started
+- **3D-printable construction elements** - easy to modify and customize. All files are available in the `3d` directory.
 
 ## Installation
 
