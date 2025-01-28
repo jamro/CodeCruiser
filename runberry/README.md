@@ -11,17 +11,9 @@
 - Manage running processes
 - Download files
 
-## Installation
+## Workspace
 
-To install **RunBerry**, run the following command on your Raspberry Pi:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/jamro/CodeCruiser/refs/heads/main/installer.sh | bash
-```
-
-This will download and install **CodeCruiser** incuding **RunBerry** on your Raspberry Pi. Once the installation is complete, you can access the web interface by navigating to `http://<your_raspberry_pi_ip>` in your browser.
-
-All files will be installed in the `/home/pi/CodeCruiser/runberry` directory. Files available through the web interface will be located in the `/home/pi/CodeCruiser/workspace` directory. It contains `examples` directory with some example executables that you can try.
+All files available through the web interface are located in the `/home/pi/CodeCruiser/workspace` directory. You can upload your own executables to this directory and run them using **RunBerry**. The workspace contains `examples` directory with some example executables that you can try.
 
 All the commands are execured as root user. The web interface is running on port 80, so you don't need to specify the port in the URL.
 
@@ -32,4 +24,22 @@ All the commands are execured as root user. The web interface is running on port
 - `sys_update.sh` - Update the system and install the latest version of **RunBerry**.
 - `bash.sh` - Run any bash command on your Raspberry Pi. Provide the command as an argument.
 
+## Development
 
+**RunBerry** is built using Python and React. The backend is a FastAPI server that runs on the Raspberry Pi (see `backend` directory). The frontend is a React app that is served by the backend (see `frontend` directory). The communication between the frontend and the backend is done using API calls.
+
+To make development easier, you can run the frontend and the backend on your local machine. The frontend will be available at `http://localhost:3000` and the backend at `http://localhost:8000`. To start the development server, run the following commands:
+
+```bash
+./scripts/dev.sh
+```
+
+This will start the backend and the frontend in development mode. The frontend will automatically reload when you make changes to the source code.
+
+### Building
+
+Frontend build is stored in the `frontend/build` directory and committed to the repository. It makes installation process faster and easier. Remember to rebuild the frontend after making changes to the source code before committing them. To build the frontend, run the following command:
+
+```bash
+./scripts/build.sh
+```
