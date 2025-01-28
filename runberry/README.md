@@ -43,3 +43,12 @@ Frontend build is stored in the `frontend/build` directory and committed to the 
 ```bash
 ./scripts/build.sh
 ```
+
+
+## Testing
+
+**RunBerry** comes with a set of tests that you can run to ensure everything is working correctly. The tests are located in the `tests` directory. To run the tests, use the following command:
+
+```bash
+./scripts/test.sh
+```

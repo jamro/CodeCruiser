@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo "Hello, my beautiful world!"
+echo "Hello, my beautiful world!" "$*"

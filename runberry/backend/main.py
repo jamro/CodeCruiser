@@ -40,11 +40,6 @@ class ExecuteRequest(BaseModel):
     path: str
     args: str
 
-# API endpoints
-@app.get("/api/status")
-def get_status():
-    return {"status": "Running"}
-
 @app.get("/api/raw_files/{path:path}")
 def get_workspace(path: str):
     return get_file(path)
