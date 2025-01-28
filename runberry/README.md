@@ -19,7 +19,7 @@ To install **RunBerry**, run the following command on your Raspberry Pi:
 curl -fsSL https://raw.githubusercontent.com/jamro/CodeCruiser/refs/heads/main/installer.sh | bash
 ```
 
-This will download and install **RunBerry** on your Raspberry Pi. Once the installation is complete, you can access the web interface by navigating to `http://<your_raspberry_pi_ip>` in your browser.
+This will download and install **CodeCruiser** incuding **RunBerry** on your Raspberry Pi. Once the installation is complete, you can access the web interface by navigating to `http://<your_raspberry_pi_ip>` in your browser.
 
 All files will be installed in the `/home/pi/CodeCruiser/runberry` directory. Files available through the web interface will be located in the `/home/pi/CodeCruiser/workspace` directory. It contains `examples` directory with some example executables that you can try.
 
@@ -31,8 +31,5 @@ All the commands are execured as root user. The web interface is running on port
 
 - `sys_update.sh` - Update the system and install the latest version of **RunBerry**.
 - `bash.sh` - Run any bash command on your Raspberry Pi. Provide the command as an argument.
-
-
-
 
 
