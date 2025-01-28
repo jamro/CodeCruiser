@@ -16,4 +16,4 @@ curl -fsSL https://raw.githubusercontent.com/jamro/CodeCruiser/refs/heads/main/i
 
 This will download and install **CodeCruiser** on your Raspberry Pi. Once the installation is complete, you can access the web interface by navigating to `http://<your_raspberry_pi_ip>` in your browser. To learn more more about Web Interface (aka **RunBerry**), see [RunBerry README](runberry/README.md).
 
-![RunBerry Screenshot](docs/runberry_ui.png)
+![RunBerry Screenshot](runberry/docs/runberry_ui.png)
