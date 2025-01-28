@@ -15,7 +15,7 @@
 - **RunBerry web interface** - control the robot from your phone or tablet using a web browser
 - **CodeCruise Library** - a set of Python modules to streamline the development of robot applications
 - **Example applications** - included to get you started
-- **3D-printable construction elements** - easy to modify and customize. All files are available in the `3d` directory.
+- **3D-printable construction elements** - easy to modify and customize. All files are available in the `hardware` directory.
 
 ## Installation
 
