@@ -21,10 +21,10 @@ except ValueError:
 
 motors = Motors()
 
-print("Setting motor1 speed to", args[0])
-print("Setting motor2 speed to", args[1])
-print("Setting motor3 speed to", args[2])
-print("Setting motor4 speed to", args[3])
+print("Setting motor0 (left-front) speed to", args[0])
+print("Setting motor1 (left-rear) speed to", args[1])
+print("Setting motor2 (right-front) speed to", args[2])
+print("Setting motor4 (right-rear) speed to", args[3])
 motors.control_motor(0, args[0])
 motors.control_motor(1, args[1])
 motors.control_motor(2, args[2])
