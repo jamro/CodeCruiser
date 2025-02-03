@@ -5,24 +5,28 @@ class Motors:
   def __init__(self):
     self._motors = [
       {
+        # left front
         "enable": PWMOutputDevice(17),
         "forward": PWMOutputDevice(22),
         "backward": PWMOutputDevice(27),
         "reverse": False
       },
       {
+        # left rear
         "enable": PWMOutputDevice(25),
         "forward": PWMOutputDevice(23),
         "backward": PWMOutputDevice(24),
         "reverse": False
       },
       {
+        # right front
         "enable": PWMOutputDevice(10),
         "forward": PWMOutputDevice(9),
         "backward": PWMOutputDevice(11),
         "reverse": False
       },
      {
+        # right rear
         "enable": PWMOutputDevice(12),
         "forward": PWMOutputDevice(8),
         "backward": PWMOutputDevice(7),
@@ -30,8 +34,8 @@ class Motors:
       },
     ]
     self._sides = {
-      "left": [0, 3],
-      "right": [1, 2]
+      "left": [0, 1],
+      "right": [2, 3]
     }
     self._left_speed = 0
     self._right_speed = 0
