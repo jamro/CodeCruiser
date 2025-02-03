@@ -28,7 +28,7 @@ class WebApp(FastAPI):
     self.picam2_config = {
       "width": 640,
       "height": 480,
-      "fps": 30
+      "fps": 60
     }
 
   def find_available_port(self, start_port=9000, end_port=9100):
