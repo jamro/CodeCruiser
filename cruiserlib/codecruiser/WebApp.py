@@ -8,7 +8,20 @@ import asyncio
 from time import sleep
 
 class WebApp(FastAPI):
-  def __init__(self, *args, **kwargs):
+  def __init__(self, *args, enable_camera=False, **kwargs):
+
+    async def lifespan(app: FastAPI):
+      """Lifespan context manager for FastAPI."""
+      try:
+          self.initialize_camera()
+          yield
+      finally:
+          if self.picam2:
+              self.picam2.stop()
+
+    if enable_camera:
+      kwargs['lifespan'] = lifespan
+
     super().__init__(*args, **kwargs)
     self.picam2 = None
     self.picam2_ready = False
@@ -54,30 +67,23 @@ class WebApp(FastAPI):
         sleep(2)
 
     raise RuntimeError("Camera failed to initialize after multiple attempts.")
-  
+
   def stream_video(self):
-    if self.picam2 and not self.picam2_ready:
-      print("Camera is not ready")
-      return Response(content="Camera is not ready", status_code=503)
-
-    if not self.picam2 and not self.picam2_ready:
-      print("Initializing camera")
-      self.initialize_camera()
-      self.picam2_ready = True
-      print("Camera initialized")
-
     async def video_stream_generator():
       while True:
         stream = io.BytesIO()
         try:
-            self.picam2.capture_file(stream, format="jpeg")
-            stream.seek(0)
-            frame = stream.read()
-            yield (b"--frame\r\n"
-                    b"Content-Type: image/jpeg\r\n\r\n" + frame + b"\r\n")
-            await asyncio.sleep(1000/self.picam2_config["fps"])
+          self.picam2.capture_file(stream, format="jpeg")
+          stream.seek(0)
+          frame = stream.read()
+          yield (b"--frame\r\n"
+              b"Content-Type: image/jpeg\r\n\r\n" + frame + b"\r\n")
+          await asyncio.sleep(0.1)  # Limit to ~10 FPS
         except Exception as e:
-            print(f"Error capturing frame: {e}")
-            break
-        
+          print(f"Error capturing frame: {e}")
+          break
+
+    if not self.picam2:
+      return Response("Camera not initialized. Please restart the server.", status_code=500)
+
     return StreamingResponse(video_stream_generator(), media_type="multipart/x-mixed-replace; boundary=frame")
