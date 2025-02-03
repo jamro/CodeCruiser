@@ -80,5 +80,6 @@ else
   sudo systemctl restart "$SERVICE_NAME"
 fi
 
+echo ""
 echo "Installation complete. Reboot the system to apply changes."
 
