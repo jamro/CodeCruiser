@@ -50,6 +50,7 @@ sudo chown -R pi:pi /home/pi/CodeCruiser
 # configure new workspace
 cp -r /home/pi/CodeCruiser/workspace /home/pi/workspace
 jq --arg newDir "/home/pi/workspace" '.workspace_dir = $newDir' /home/pi/CodeCruiser/runberry/config.json > /tmp/runberry_config.json
+mv /tmp/runberry_config.json /home/pi/CodeCruiser/runberry/config.json
 
 cd runberry/backend
 sudo -H pip install -r requirements.txt --break-system-packages
