@@ -6,6 +6,9 @@ setup(
   packages=find_packages(),
   install_requires=[
     "gpiozero",
+    "watchdog",
+    "paramiko",
+    "fastapi"
   ],
   include_package_data=True,
   description='CodeCruiser library',

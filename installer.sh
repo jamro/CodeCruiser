@@ -49,7 +49,7 @@ sudo chown -R pi:pi /home/pi/CodeCruiser
 
 # configure new workspace
 echo "Configuring workspace..."
-cp -r /home/pi/CodeCruiser/workspace /home/pi/workspace
+rsync -av --progress /home/pi/CodeCruiser/workspace/ /home/pi/workspace/
 jq --arg newDir "/home/pi/workspace" '.workspace_dir = $newDir' /home/pi/CodeCruiser/runberry/config.json > /tmp/runberry_config.json
 mv /tmp/runberry_config.json /home/pi/CodeCruiser/runberry/config.json
 
@@ -59,7 +59,6 @@ sudo -H pip install -r requirements.txt --break-system-packages
 # install codecruiser library
 cd /home/pi/CodeCruiser/cruiserlib
 sudo -H pip install -e . --break-system-packages
-
 
 # Add start.sh to autostart with root privileges
 SERVICE_NAME="runberry.service"
