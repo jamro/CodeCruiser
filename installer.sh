@@ -11,6 +11,11 @@ sudo apt upgrade -y
 sudo apt-get install git -y
 sudo apt install python3 python3-pip
 sudo apt install -y python3-picamera2 python3-pyqt5 python3-opengl python3-opencv ffmpeg python3-flask
+sudo apt install -y npm
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+source ~/.bashrc
+nvm install 22
+nvm use 22
 
 # Configure Watchdog
 sudo apt install watchdog -y
@@ -40,6 +45,8 @@ else
   git clone "$REPO_URL" "$REPO_DIR"
   cd "$REPO_DIR"
 fi
+
+sudo chown -R pi:pi /home/pi/CodeCruiser
 
 cd runberry/backend
 sudo -H pip install -r requirements.txt --break-system-packages
