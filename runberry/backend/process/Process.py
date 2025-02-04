@@ -3,8 +3,6 @@ import threading
 import datetime
 import shlex
 import uuid
-import os
-import signal
 import subprocess
 
 class Process:

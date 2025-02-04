@@ -17,6 +17,8 @@ All files available through the web interface are located in the `/home/pi/CodeC
 
 All the commands are execured as root user. The web interface is running on port 80, so you don't need to specify the port in the URL.
 
+To change the workspace directory, modify `CodeCruiser/runberry/config.json` file and restart the server.
+
 ## System Tools
 
 **RunBerry** comes with a set of system tools located in the `/home/pi/CodeCruiser/workspace/system` directory. These tools allow you to perform various tasks on your Raspberry Pi:

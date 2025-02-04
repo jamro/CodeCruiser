@@ -2,6 +2,7 @@ from .Process import Process
 import shlex
 import os
 from fastapi import HTTPException
+from api import get_workspace_path
 
 class ProcessManager:
     
@@ -14,7 +15,7 @@ class ProcessManager:
         # get current working directory and command from path
         cwd = "/".join(path.split("/")[:-1])
 
-        workspace_path = os.path.abspath(os.path.join(os.getcwd(), "..", "..", "workspace"))
+        workspace_path = get_workspace_path()
         cwd = os.path.abspath(os.path.join(workspace_path, cwd))
         full_path = os.path.abspath(os.path.join(workspace_path, path))
     

@@ -1,6 +1,7 @@
 import os
 from fastapi import HTTPException
 from .get_mime_type import get_mime_type
+from .get_workspace_path import get_workspace_path
 
 def looks_executable(file_path):
   # ends with .sh
@@ -9,7 +10,7 @@ def looks_executable(file_path):
 
 
 def get_folder(path):
-  workspace_path = os.path.abspath(os.path.join(os.getcwd(), "..", "..", "workspace"))
+  workspace_path = get_workspace_path()
   folder_path = os.path.abspath(os.path.join(workspace_path, path))
 
   if not folder_path.startswith(workspace_path):
