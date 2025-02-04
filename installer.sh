@@ -11,7 +11,7 @@ sudo apt upgrade -y
 sudo apt-get install git -y
 sudo apt install python3 python3-pip
 sudo apt install -y python3-picamera2 python3-pyqt5 python3-opengl python3-opencv ffmpeg python3-flask
-sudo apt install -y npm
+sudo apt install -y npm jq
 curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
 source ~/.bashrc
 nvm install 22
@@ -45,8 +45,11 @@ else
   git clone "$REPO_URL" "$REPO_DIR"
   cd "$REPO_DIR"
 fi
-
 sudo chown -R pi:pi /home/pi/CodeCruiser
+
+# configure new workspace
+cp -r /home/pi/CodeCruiser/workspace /home/pi/workspace
+jq --arg newDir "/home/pi/workspace" '.workspace_dir = $newDir' /home/pi/CodeCruiser/runberry/config.json > /tmp/runberry_config.json
 
 cd runberry/backend
 sudo -H pip install -r requirements.txt --break-system-packages
