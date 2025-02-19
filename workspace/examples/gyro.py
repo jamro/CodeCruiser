@@ -44,5 +44,5 @@ print("Reading ADXL345 accelerometer data...")
 
 while True:
   x, y, z = read_acceleration()
-  print(f"X: {x}, Y: {y}, Z: {z}")
+  print(f"X: {x}, Y: {y}, Z: {z}", flush=True)
   time.sleep(0.5)  # Read every 500ms
